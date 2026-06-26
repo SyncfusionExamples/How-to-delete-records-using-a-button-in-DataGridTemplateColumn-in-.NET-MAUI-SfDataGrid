@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:syncfusion="clr-namespace:Syncfusion.Maui.DataGrid;assembly=Syncfusion.Maui.DataGrid"
+             xmlns:local="clr-namespace:SfDataGridSample"
+             x:Class="SfDataGridSample.MainPage">
+
+
+    <ContentPage.BindingContext>
+        <local:OrderInfoRepository x:Name="viewModel"/>
+    </ContentPage.BindingContext>
+
+    <ContentPage.Content>
+        <syncfusion:SfDataGrid x:Name="dataGrid" HorizontalOptions="CenterAndExpand" Margin="20"
+                               ColumnWidthMode="Auto"
+                               GridLinesVisibility="Both" 
+                               AutoGenerateColumnsMode="None"
+                               HeaderGridLinesVisibility="Both"
+                               ItemsSource="{Binding OrderInfoCollection}">
+            <syncfusion:SfDataGrid.Columns>
+                <syncfusion:DataGridNumericColumn MappingName="OrderID" HeaderText="Order ID"/>
+                <syncfusion:DataGridTextColumn MappingName="CustomerID" HeaderText="Customer ID"/>
+                <syncfusion:DataGridTextColumn MappingName="ShipCountry" HeaderText="Ship Country"/>
+                <syncfusion:DataGridTextColumn MappingName="ShipCity" HeaderText="Ship City"/>
+                <syncfusion:DataGridTemplateColumn HeaderText="Delete Records" Format="C2">
+                    <syncfusion:DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <StackLayout HorizontalOptions="CenterAndExpand">
+                                <Button Text="Delete" 
+                                        BackgroundColor="#FF5252"
+                                        TextColor="White"
+                                        Clicked="Button_Clicked"
+                                        CommandParameter="{Binding .}"
+                                        HeightRequest="35"
+                                        WidthRequest="80"
+                                        FontSize="12"/>
+                            </StackLayout>
+                        </DataTemplate>
+                    </syncfusion:DataGridTemplateColumn.CellTemplate>
+                </syncfusion:DataGridTemplateColumn>
+            </syncfusion:SfDataGrid.Columns>
+        </syncfusion:SfDataGrid>
+    </ContentPage.Content>
+</ContentPage>
